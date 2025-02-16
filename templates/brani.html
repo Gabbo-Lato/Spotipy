@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brani della Playlist</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .btn {
+            background-color: #ffcc00;
+            color: black;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .btn:hover {
+            background-color: #e6b800;
+        }
+        .list {
+            list-style: none;
+            padding: 0;
+        }
+        .list-item {
+            background-color: #1e1e1e;
+            padding: 15px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .text-warning {
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Brani della Playlist</h1>
+            <a href="{{ url_for('home.homepage') }}" class="btn">&larr; Torna alla Home</a>
+        </div>
+
+        {% if tracks %}
+            <ul class="list">
+                {% for track in tracks %}
+                    <li class="list-item">
+                        <span><strong>{{ track['track']['name'] }}</strong> - {{ track['track']['artists'][0]['name'] }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-warning">Nessun brano disponibile.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
